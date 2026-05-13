@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Bot Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📧 Bot</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active">📊 Dashboard</a></li>
+                    <li><a href="#logs" class="nav-link">📋 Logs</a></li>
+                    <li><a href="#rules" class="nav-link">⚙️ Rules</a></li>
+                    <li><a href="#settings" class="nav-link">🔧 Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Email Auto-Responder Dashboard</h1>
+                <div class="header-right">
+                    <span id="status" class="status online">● Online</span>
+                    <span id="last-update" class="timestamp">--:--:--</span>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-processed">0</div>
+                        <div class="stat-label">Emails Processed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="replies-sent">0</div>
+                        <div class="stat-label">Auto Replies Sent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="forwarded">0</div>
+                        <div class="stat-label">Emails Forwarded</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="unread">0</div>
+                        <div class="stat-label">Unread Emails</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="refreshStats()">🔄 Refresh</button>
+                    <button class="btn btn-secondary" onclick="startBot()">▶️ Start Bot</button>
+                    <button class="btn btn-danger" onclick="stopBot()">⏹️ Stop Bot</button>
+                </div>
+            </section>
+
+            <!-- Logs View -->
+            <section id="logs" class="view">
+                <h2>Email Processing Logs</h2>
+                <table class="logs-table">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                            <th>Timestamp</th>
+                            <th>Rule</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-tbody">
+                        <tr>
+                            <td colspan="6" class="loading">Loading logs...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Rules View -->
+            <section id="rules" class="view">
+                <h2>Automation Rules</h2>
+                <button class="btn btn-primary" onclick="addRule()">➕ Add Rule</button>
+                <div id="rules-list" class="rules-list">
+                    <!-- Rules will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settings" class="view">
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <label>
+                        <input type="checkbox" id="enable-responses"> Enable Auto Responses
+                    </label>
+                    <label>
+                        Working Hours:
+                        <input type="time" id="working-hours-start"> to
+                        <input type="time" id="working-hours-end">
+                    </label>
+                    <label>
+                        Check Interval (seconds):
+                        <input type="number" id="check-interval" min="10" max="3600">
+                    </label>
+                    <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "rules": [
+    {
+      "rule_id": 1,
+      "name": "Out of Office Reply",
+      "active": true,
+      "conditions": {
+        "keywords": ["when are you available", "when will you be back", "out of office"],
+        "from_domain": null,
+        "subject_contains": null,
+        "match_type": "any"
+      },
+      "action": "reply",
+      "response": "Thank you for your email. I am currently out of the office and will return on Monday. For urgent matters, please contact support@example.com. Best regards.",
+      "forward_to": null
+    },
+    {
+      "rule_id": 2,
+      "name": "Support Ticket Categorization",
+      "active": true,
+      "conditions": {
+        "keywords": ["issue", "bug", "error", "problem", "not working"],
+        "from_domain": null,
+        "subject_contains": null,
+        "match_type": "any"
+      },
+      "action": "categorize",
+      "category": "support",
+      "response": "Thank you for reporting this issue. Our support team will investigate and get back to you shortly.",
+      "forward_to": "support@example.com"
+    },
+    {
+      "rule_id": 3,
+      "name": "Sales Inquiry Forward",
+      "active": true,
+      "conditions": {
+        "keywords": ["pricing", "demo", "quote", "interested", "how much"],
+        "from_domain": null,
+        "subject_contains": null,
+        "match_type": "any"
+      },
+      "action": "forward",
+      "category": "sales",
+      "response": "Thank you for your interest. Our sales team will contact you shortly with more information.",
+      "forward_to": "sales@example.com"
+    },
+    {
+      "rule_id": 4,
+      "name": "HR Inquiry Forward",
+      "active": true,
+      "conditions": {
+        "keywords": ["job", "career", "apply", "hiring", "position"],
+        "from_domain": null,
+        "subject_contains": null,
+        "match_type": "any"
+      },
+      "action": "forward",
+      "category": "hr",
+      "response": "Thank you for your interest in joining our team. Our HR department will review your inquiry and be in touch.",
+      "forward_to": "hr@example.com"
+    },
+    {
+      "rule_id": 5,
+      "name": "Billing Inquiry",
+      "active": true,
+      "conditions": {
+        "keywords": ["invoice", "payment", "billing", "receipt", "refund"],
+        "from_domain": null,
+        "subject_contains": null,
+        "match_type": "any"
+      },
+      "action": "forward",
+      "category": "billing",
+      "response": "Thank you for your inquiry. Our billing team will assist you shortly.",
+      "forward_to": "billing@example.com"
+    }
+  ]
+}
